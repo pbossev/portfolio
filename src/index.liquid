@@ -7,64 +7,74 @@ layout: base.liquid
     <h1>Peter Bossev
       <span class="wave">👋</span>
     </h1>
-    {% comment %} <h1>
-      <a href="https://raw.githubusercontent.com/pbossev/CV/main/CV.pdf" class="text-2xl">CV 📕</a>
-    </h1> {% endcomment %}
+    <h1>
+      <a href="mailto:peterbossev@gmail.com" class="green arrow-external">Email</a>
+    </h1>
   </div>
   <p>A highschool student with a passion for
     <strong>tech</strong>
-    💻                                                                                                                                                                                                   
     and
-    <strong>math</strong>
-    🧮. Read more
-    <a href="/about/">about me</a>.
+    <strong>math</strong>. Read more
+    <a href="/about/">about me</a>, check out my
+    <a href="https://pbsv.photo/" class="arrow-external">photography</a>, or get in contact through one of my
+    <a href="/links/">links</a>.
   </p>
 </div>
-<div class="flex flex-col gap-2 space-y-8 w-full justify-between xl:flex-row xl:space-y-0 xl:gap-8 xl:space-x-8">
-  {% comment %} <div class="shrink-0">
-    <h2 class="text-zinc-400 mb-2 text-sm">Notes 📝</h2>
-    <div class="space-y-2">
-      {%- for note in site.notes -%}
-        <div class="row">
-          <a href="{{ note.url }}">{{ note.class }}</a>
-          <p>{{ note.fsize }}</p>
-        </div>
-      {%- endfor -%}
-    </div>
-  </div> {% endcomment %}
-  <div>
-    <h2 class="text-zinc-400 mb-2 text-sm">Projects 🛠️</h2>
-    <div class="space-y-2">
-      {%- for project in collections.projects -%}
+
+<div>
+  <h2 class="mb-2">Projects 🛠️</h2>
+  <div class="space-y-2">
+    {% assign projects = collections.projects | sort: "data.order" %}
+    {%- for project in projects -%}
+      <div>
         <div>
-          <div class="row">
-            <a href="{{ project.url }}">{{ project.data.title }}</a>
-            <small class="text-zinc-500">{{ project.data.dateLabel }}</small>
-          </div>
-          <p class="text-zinc-400 ">{{ project.data.description }}</p>
+          <a href="{{ project.url }}">{{ project.data.title }}</a>
+          {% if project.data.stars %}
+            <small>{{ project.data.stars }}★</small>
+          {% endif %}
         </div>
-      {%- endfor -%}
-    </div>
+        <p class="text-zinc-400 ">{{ project.data.description }}</p>
+        {% if project.data.links.size > 0 %}
+          <small>
+            [
+            {% for link in project.data.links %}
+              <a href="{{ link.url }}">{{ link.label }}</a>
+              {% if forloop.last == false %}
+                |
+              {% endif %}
+            {% endfor %}]
+          </small>
+        {% endif %}
+      </div>
+    {%- endfor -%}
   </div>
-  <div>
-    <h2 class="text-zinc-400 mb-2 text-sm">Extracurriculars 🎓</h2>
-    <div class="space-y-2">
-      {%- for extracurricular in collections.extracurriculars -%}
-        <div>
-          <div class="row">
-            <a href="{{ extracurricular.url }}">{{ extracurricular.data.title }}</a>
-            <small class="text-zinc-500">{{ extracurricular.data.dateLabel }}</small>
-          </div>
-          <p class="text-zinc-400">{{ extracurricular.data.description }}</p>
-        </div>
-      {%- endfor -%}
-    </div>
+</div>
+
+<div>
+  <h2 class="mb-2">Notes 📝</h2>
+  <div class="space-y-2">
+    {% assign notes = collections.notes | sort: "date" | reverse %}
+    {%- for note in notes -%}
+      <div class="row">
+        <a href="{{ note.url }}">{{ note.data.title }}</a>
+        <div class="grow border-zinc-700 border-b"></div>
+        <p class="text-zinc-500">{{ note.data.dateLabel }}</p>
+      </div>
+    {%- endfor -%}
   </div>
 </div>
 <div>
-  <h2 class="mb-2">Contact 📫</h2>
-  <p>You can reach me at
-    <a href="mailto:peterbossev@gmail.com" class="green arrow-external">peterbossev@gmail.com</a>, or follow me through my
-    <a href="/links/">links</a>.
-  </p>
+  <h2 class="mb-2">Extracurriculars 🎓</h2>
+  <div class="space-y-2">
+    {%- for extracurricular in collections.extracurriculars -%}
+      <div>
+        <div class="row">
+          <a href="{{ extracurricular.url }}">{{ extracurricular.data.title }}</a>
+          <hr class="border-zinc-100">
+          <small class="text-zinc-500">{{ extracurricular.data.dateLabel }}</small>
+        </div>
+        <p class="text-zinc-400">{{ extracurricular.data.description }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
 </div>

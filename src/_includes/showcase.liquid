@@ -4,10 +4,16 @@ layout: base.liquid
 
 <div>
   {% include "_back.liquid" %}
-  <h1 class="mt-2">
-    {{ title }}
-  </h1>
-  <small>{{ dateLabel }}</small>
+  <div>
+    <h1 class="mt-2">
+      {{ title }}
+    </h1>
+  </div>
+  <small>{{ dateLabel }}
+    {% if stars %}
+      - {{ stars }}★
+    {% endif %}
+  </small>
   <p>{{ description }}</p>
 </div>
 

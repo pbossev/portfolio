@@ -15,16 +15,24 @@
 }
 
 body {
-    font-family: monospace;
+    min-height: 100svh;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 @layer base {
     h1 {
         @apply text-2xl;
+        font-weight: 700;
     }
 
     h2 {
+        @apply text-xl;
+        font-weight: 600;
+    }
+
+    h3 {
         @apply text-lg;
+        font-weight: 500;
     }
 
     html {
@@ -110,11 +118,27 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     gap: 1.5rem;
 }
 
-tr td {
+tr>* {
     padding-right: 1rem;
+    padding-left: .5rem;
+}
+
+thead th {
+    text-align: left;
+    font-weight: 500;
+}
+
+table:not(.no-alt) tbody tr:nth-child(odd) {
+    @apply bg-zinc-800;
+}
+
+
+hr {
+    @apply border-zinc-700;
 }
 
 table {
@@ -215,6 +239,7 @@ ul li::before {
 em,
 strong {
     color: var(--green);
+    font-weight: 500;
 }
 
 a:link {
@@ -246,4 +271,5 @@ Arrows
 
 .arrow-external:after {
     content: '↗';
+    font-weight: 100;
 }
