@@ -37,7 +37,6 @@ body {
 
     html {
         font-size: 16px;
-        /* base (mobile) */
     }
 
     @screen sm {
@@ -50,11 +49,19 @@ body {
         html {
             font-size: 18px;
         }
+
+        .md-figure-wrapper.md-figure-wrapper {
+            width: 75%;
+        }
     }
 
     @screen lg {
         html {
             font-size: 19px;
+        }
+
+        .md-figure-wrapper.md-figure-wrapper {
+            width: 60%;
         }
     }
 
@@ -150,11 +157,62 @@ table {
 
 thead {
     border-bottom-width: 1px;
-    @apply border-zinc-700;
+    @apply border-zinc-400;
+}
+
+img {
+    @apply border-zinc-400;
+    border: 1px solid;
 }
 
 div:has(> table) {
     overflow-x: auto;
+}
+
+.heading-anchor.heading-anchor {
+    @apply text-zinc-500;
+    text-decoration: none;
+}
+
+.md-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.md-figure-wrapper {
+    width: 100%;
+    /* * REMOVED aspect-ratio: 1 / 1;
+     * This was forcing the square shape and causing the gap.
+     */
+    /* * REMOVED position: relative; and overflow: hidden;
+     * No longer needed without the object-fit properties.
+     */
+}
+
+.md-figure-img {
+    margin: 0 auto;
+    width: auto;
+    max-width: 100%;
+    /* Keeps landscape images responsive */
+    height: auto;
+    /* Maintains the image's aspect ratio */
+
+    /* * ADDED max-height: 75vh; (or 80vh, 90vh, etc.)
+     * This is the key to constraining tall portrait images.
+     * '75vh' means 75% of the viewport's (browser's) height.
+     */
+    max-height: 50vh;
+
+    /* * REMOVED object-fit, object-position, and max-height: 100%.
+     * We now use height: auto and max-height: 75vh.
+     */
+}
+
+.md-figure-caption {
+    padding-top: .5rem;
+    @apply text-zinc-500 text-sm;
+    text-align: center;
 }
 
 .gold {

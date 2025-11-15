@@ -3,7 +3,7 @@ title: Gear
 dateLabel: Timeless
 ---
 
-# Computer
+## Computer
 
 | Item              | Description / Model                      | Price |
 | ----------------- | ---------------------------------------- | ----- |
@@ -16,7 +16,7 @@ dateLabel: Timeless
 | SSD               | Tempest 1TB (MKNSSDTS1TB-D8)             | $65   |
 | GPU               | NVIDIA GeForce GTX 1080 Ti (Watercooled) | Free  |
 
-# Camera
+## Camera
 
 | Item                | Description / Source                                  | Price |
 | ------------------- | ----------------------------------------------------- | ----- |

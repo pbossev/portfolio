@@ -4,17 +4,24 @@ layout: base.liquid
 
 <div>
   {% include "_back.liquid" %}
-  <div>
-    <h1 class="mt-2">
-      {{ title }}
-    </h1>
-  </div>
-  <small>{{ dateLabel }}
-    {% if stars %}
-      - {{ stars }}★
-    {% endif %}
-  </small>
+  <h1 class="mt-2">
+    {{ title }}
+  </h1>
+
+  {% if links.size > 0 %}
+    <small>
+      [
+      {% for link in links %}
+        <a href="{{ link.url }}">{{ link.label }}</a>
+        {% if forloop.last == false %}
+          |
+        {% endif %}
+      {% endfor %}]
+    </small>
+  {% endif %}
   <p>{{ description }}</p>
 </div>
 
-{{ content }}
+<article class="space-y-[1rem]">
+  {{ content }}
+</article>
